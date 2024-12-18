@@ -1,0 +1,25 @@
+
+
+docker-compose up
+
+docker exec -it 6a8f041f34bb bash
+cd /opt/bitnami/kafka/bin/
+
+kafka-topics.sh --create --topic newsdetail --bootstrap-server 127.0.0.1:9093 //команда для создания топика возвращаемых данных с детальной информацией о новости
+kafka-topics.sh --create --topic newslist --bootstrap-server 127.0.0.1:9093 //команда для создания топика возвращаемых данных списка новостей
+kafka-topics.sh --create --topic filtered_content --bootstrap-server 127.0.0.1:9093 //команда для создания топика возвращаемых данных списком отфильтрованных по контенту
+kafka-topics.sh --create --topic filter_published --bootstrap-server 127.0.0.1:9093 //команда для создания топика возвращаемых данных списком отфильтрованных по дате публикации
+kafka-topics.sh --create --topic comments --bootstrap-server 127.0.0.1:9093 //команда для создания топика получения комментариев
+kafka-topics.sh --create --topic add_comments --bootstrap-server 127.0.0.1:9093 //команда для создания топика добавления комментариев
+kafka-topics.sh --create --topic news_input --bootstrap-server 127.0.0.1:9093 //команда для создания топика входящих сообщений новостного сервиса
+kafka-topics.sh --create --topic comments_input --bootstrap-server 127.0.0.1:9093 //команда для создания топика входящих сообщений сервиса комментариев
+
+
+
+kafka-console-consumer.sh --topic newsdetail --from-beginning --bootstrap-server 127.0.0.1:9093 //команда для просмотра сообщений с детальной информацией о новости
+kafka-console-consumer.sh --topic newslist --from-beginning --bootstrap-server 127.0.0.1:9093 //команда для просмотра сообщений со списком новостей
+kafka-console-consumer.sh --topic filtered_content --from-beginning --bootstrap-server 127.0.0.1:9093 //команда для просмотра сообщений  отфильтрованных по контенту
+kafka-console-consumer.sh --topic comments --from-beginning --bootstrap-server 127.0.0.1:9093 //команда для просмотра сообщений с комментариями
+kafka-console-consumer.sh --topic add_comments --from-beginning --bootstrap-server 127.0.0.1:9093 //команда для просмотра сообщений с командами на добавление комментариев
+kafka-console-consumer.sh --topic news_input --from-beginning --bootstrap-server 127.0.0.1:9093 //команда для просмотра входящих сообщений для новостного сервиса
+kafka-console-consumer.sh --topic comments_input --from-beginning --bootstrap-server 127.0.0.1:9093 //команда для просмотра входящих сообщений для сервиса комментариев
